@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Homework 3: Challenge 4 (Quantitative)</title>
+    <meta charset="utf-8" />
+
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.9.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.2.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.2.2"></script>
+    <link rel="stylesheet" href="css/vegaLite_base.css">
+
+    <style media="screen">
+        /* Add space between Vega-Embed links  */
+        
+        .vega-actions a {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Video Game Playing Usage</h1>
+    <!-- Container for the visualization -->
+    <div id="vis"></div>
+
+
+
+    <script>
+        // Assign the specification to a local variable vlSpec.
+        var YourViz = {
+
+
+            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+            "description": "Graph exploring my video game playing usage over a five week period of time",
+            "data": {
+                "url": "data/QuantifiedFinalData.csv"
+            },
+            /* "transform": [{
+                 "filter": "datum.symbol==='GOOG'"
+             }],*/
+
+            "mark": "line",
+            "encoding": {
+                "x": {
+
+                    "field": "Week",
+                    "type": "quantitative",
+                    "axis": {
+                        "title": "Week"
+                    }
+                },
+                "y": {
+                    "field": "VideoGameWeekly",
+                    "type": "quantitative",
+                    "axis": {
+                        "title": "Video Game Playing Usage (hours)"
+                    },
+                    "scale": {
+                        "domain": [15, 22]
+                    }
+                },
+                "color": {
+                    "value": "#C1131E"
+                },
+                "tooltip": [
+
+                    {
+                        "field": "VideoGameWeekly",
+                        "type": "quantitative",
+                        "title": "Video Game Usage (hours)"
+                    },
+
+                    {
+
+                        "field": "Week",
+                        "type": "quantitative",
+                        /* format adjusts amount decimal points (.3t makes there be only 2 decimals points) */
+
+                        "title": "Week"
+                    }
+
+                ]
+            }
+
+        };
+
+
+
+
+
+
+        // Embed the visualization in the container with id `vis`
+        vegaEmbed('#vis', YourViz);
+    </script>
+</body>
+
+</html>
