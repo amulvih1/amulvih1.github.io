@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Homework 3: Challenge 2</title>
+    <meta charset="utf-8" />
+
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.9.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.2.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.2.2"></script>
+    <link rel="stylesheet" href="css/vegaLite_base.css">
+
+    <style media="screen">
+        /* Add space between Vega-Embed links  */
+        
+        .vega-actions a {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Employment Status</h1>
+    <!-- Container for the visualization -->
+    <div id="vis"></div>
+
+
+
+    <script>
+        // Assign the specification to a local variable vlSpec.
+        var YourViz = {
+
+
+            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+            "description": "A visualization that explores the Population size differences between employed and unemployed that ranges from the years of 1947 to 1962.",
+            "data": {
+                "url": "data/Longley_long.csv"
+            },
+            "mark": "line",
+            "encoding": {
+                "x": {
+                    "field": "Year",
+                    "type": "temporal"
+                },
+                "y": {
+                    "field": "Population ",
+                    "type": "quantitative",
+                    "axis": {
+                        "title": "Population Size (count)",
+                    }
+                },
+                "color": {
+                    "field": "EmployedVUnemploy",
+                    "type": "nominal"
+                },
+                "tooltip": [
+
+                    {
+                        "field": "Year",
+                        "type": "temporal",
+                        "title": "Year"
+
+
+                    },
+
+                    {
+                        "aggregate": "mean",
+                        "field": "Population ",
+                        "type": "quantitative",
+                        /* format adjusts amount decimal points (.3t makes there be only 2 decimals points) */
+                        "format": ".3t",
+                        "title": "Population Size "
+                    }
+
+                ]
+            }
+
+        };
+
+
+
+
+
+
+        // Embed the visualization in the container with id `vis`
+        vegaEmbed('#vis', YourViz);
+    </script>
+</body>
+
+</html>
